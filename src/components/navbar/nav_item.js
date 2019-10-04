@@ -21,7 +21,9 @@ export default class NavItem extends React.Component {
 	render() {
 		return (
 			<Item>
-				<Link href={this.props.link}>{this.props.title}</Link>
+				<Link href='#' onClick={this.props.onClick}>
+					{this.props.title}
+				</Link>
 			</Item>
 		)
 	}

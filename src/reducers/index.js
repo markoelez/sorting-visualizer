@@ -15,7 +15,9 @@ const reducer = handleAction(
 	(state, action) => {
 		return {
 			...state,
-			array: Array.from({ length: 40 }, () => Math.floor(Math.random() * 40))
+			array: Array.from({ length: action.length }, () =>
+				Math.floor(Math.random() * action.max_height)
+			)
 		}
 	},
 	initState

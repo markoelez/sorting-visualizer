@@ -23,12 +23,12 @@ export default class Navbar extends React.Component {
 		return (
 			<StyledNav>
 				<MenuWrapper>
-					<NavItem link={''} title={'Generate Array'} />
-					<NavItem title={' '} />
-					<NavItem link={''} title={'Insertion Sort'} />
-					<NavItem link={''} title={'Merge Sort'} />
-					<NavItem title={' '} />
-					<NavItem link={''} title={'Sort'} />
+					<NavItem onClick={this.props.genArray} title={'Generate Array'} />
+					<NavItem />
+					<NavItem title={'Insertion Sort'} />
+					<NavItem title={'Quick Sort'} />
+					<NavItem />
+					<NavItem title={'Merge Sort'} />
 				</MenuWrapper>
 			</StyledNav>
 		)

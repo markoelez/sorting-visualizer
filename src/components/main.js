@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Row from './array'
+import Row from './array/array'
 import { connect } from 'react-redux'
+import Navbar from './navbar/navbar'
 
 const MainWrapper = styled.div`
 	background-color: #a5ff54;
@@ -11,12 +12,16 @@ const MainWrapper = styled.div`
 `
 
 class Main extends React.Component {
+	genArray = () => {
+		this.props.generateArray(50, window.innerHeight / 2)
+	}
 	render() {
-		const { array, generateArray } = this.props
+		const { array } = this.props
 		return (
 			<div>
+				<Navbar genArray={this.genArray} />
 				<MainWrapper>
-					<button onClick={generateArray} />
+					{/* <button onClick={generateArray} /> */}
 					<Row value={array} />
 				</MainWrapper>
 			</div>
@@ -32,8 +37,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		generateArray: length => {
-			dispatch({ type: 'GEN_ARRAY', length: length })
+		generateArray: (length, max_height) => {
+			dispatch({ type: 'GEN_ARRAY', length: length, max_height: max_height })
 		}
 	}
 }
