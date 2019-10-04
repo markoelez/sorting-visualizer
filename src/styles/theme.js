@@ -8,6 +8,6 @@ export const theme = {
 	primary_button_color: '#ca3e47',
 	secondary_button_color: '#ca3e47',
 
-	bg_color: '#a5ff54',
-	node_color: '#313131'
+	bg_color: '#313131',
+	node_color: '#ffffff'
 }

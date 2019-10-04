@@ -25,10 +25,10 @@ export default class Navbar extends React.Component {
 				<MenuWrapper>
 					<NavItem onClick={this.props.genArray} title={'Generate Array'} />
 					<NavItem />
-					<NavItem title={'Insertion Sort'} />
+					<NavItem onClick={this.props.sortTest} title={'Insertion Sort'} />
 					<NavItem title={'Quick Sort'} />
 					<NavItem />
-					<NavItem title={'Merge Sort'} />
+					<NavItem title={'Start Sorting'} />
 				</MenuWrapper>
 			</StyledNav>
 		)
