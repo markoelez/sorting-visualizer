@@ -5,26 +5,31 @@ import { setRunning } from '../reducers/running'
 function insertionSort(arr, dispatch) {
 	let array = arr.slice(0)
 	// testHelper(array, dispatch)
-	insertionTest(arr, dispatch)
+	insertionTest(array, dispatch)
 	dispatch(setRunning(0))
 }
 
 function insertionTest(arr, dispatch) {
-	let n = arr.length
+	let n = 4 //arr.length
 	var i = 1
 	function loop() {
 		setTimeout(function() {
-			var key = arr[i]
+			var temp = arr[i]
 			var j = i - 1
-			dispatch(setCurrentTwo(i))
-			while (j >= 0 && arr[j] > key) {
-				dispatch(setCurrentOne(j))
+			// dispatch(setCurrentTwo(i))
+			while (j >= 0 && arr[j] > temp) {
+				// dispatch(setCurrentOne(j))
+				console.log('swap j: ' + arr[j + 1])
+				console.log('swap i: ' + arr[i])
+
 				arr[j + 1] = arr[i]
 				j--
 			}
-			arr[j + 1] = key
+			console.log('temp: ' + temp)
+
+			arr[j + 1] = temp
 			// dispatch(setArray(arr))
-			console.log('ARRAY ____ :::' + arr)
+			console.log('ARRAY: ' + arr)
 			i++
 			if (i < n) {
 				loop()
