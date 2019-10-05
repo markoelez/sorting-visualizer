@@ -21,12 +21,29 @@ function insertionSortHelper(arr) {
 	}
 }
 
-async function testHelper(arr, dispatch) {
-	let n = arr.length
-	for (var i = 1; i < n; i++) {
-		console.log(i)
-		dispatch(setCurrentOne(i))
+function testHelper(arr, dispatch) {
+	// let n = arr.length
+	let n = 100
+	// for (var i = 1; i < n; i++) {
+	// 	dispatch(setCurrentOne(arr[i]))
+	// }
+
+	var i = 1 //  set your counter to 1
+
+	function myLoop() {
+		//  create a loop function
+		setTimeout(function() {
+			//  call a 3s setTimeout when the loop is called
+			dispatch(setCurrentOne(arr[i]))
+			i++
+			if (i < n) {
+				//  if the counter < 10, call the loop function
+				myLoop() //  ..  again which will trigger another
+			} //  ..  setTimeout()
+		}, 100)
 	}
+
+	myLoop() //  start the loop
 }
 
 export default insertionSort

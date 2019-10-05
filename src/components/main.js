@@ -25,7 +25,7 @@ class Main extends React.Component {
 		this.props.startSorting(this.props.algorithm, this.props.array)
 	}
 	render() {
-		const { array } = this.props
+		let { array, current, algorithm } = this.props
 		console.log('in render()' + array)
 		return (
 			<div>
@@ -34,8 +34,8 @@ class Main extends React.Component {
 					sortTest={this.sortTest}
 					genArray={this.genArray}
 				/>
-				<div>{'Current: ' + this.props.current}</div>
-				<div>{'Algorithm: ' + this.props.algorithm}</div>
+				<div>{'Current: ' + current}</div>
+				<div>{'Algorithm: ' + algorithm}</div>
 
 				<MainWrapper>
 					<Row value={array} />
@@ -56,9 +56,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		generateArray: (length, height) => {
-			let array = Array.from({ length: length }, () =>
-				Math.floor(Math.random() * height)
-			)
+			// let array = Array.from({ length: length }, () =>
+			// 	Math.floor(Math.random() * height)
+			// )
+			let array = Array.from(Array(100).keys())
 			console.log('in main.js: ' + array)
 			dispatch(genArray(array))
 		},

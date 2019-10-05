@@ -23,6 +23,7 @@ export const setCurrentTwo = createAction(SET_CURRENT_TWO)
 export const currentOne = handleActions(
 	{
 		SET_CURRENT_ONE: (state, { payload }) => {
+			console.log('payload: ' + payload)
 			return payload
 		}
 	},
