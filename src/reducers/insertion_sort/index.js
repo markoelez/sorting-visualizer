@@ -9,17 +9,6 @@ export const setCurrentOne = createAction(SET_CURRENT_ONE)
 export const SET_CURRENT_TWO = 'SET_CURRENT_TWO'
 export const setCurrentTwo = createAction(SET_CURRENT_TWO)
 
-// export const currentOne = handleAction(
-// 	SET_CURRENT_ONE,
-// 	(state, action) => {
-// 		console.log('ACTION: ' + action)
-// 		return {
-// 			idx: action.current
-// 		}
-// 	},
-// 	initStateOne
-// )
-
 export const currentOne = handleActions(
 	{
 		SET_CURRENT_ONE: (state, { payload }) => {
@@ -35,5 +24,5 @@ export const currentTwo = handleActions(
 			return payload
 		}
 	},
-	initStateOne
+	initStateTwo
 )

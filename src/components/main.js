@@ -5,8 +5,10 @@ import { connect } from 'react-redux'
 import Navbar from './navbar/navbar'
 import Button from '@material-ui/core/Button'
 import insertionSort from '../algorithms/insertionSort'
-import { genArray } from '../reducers/array'
+import { setArray } from '../reducers/array'
 import { setCurrentOne, setCurrentTwo } from '../reducers/insertion_sort'
+import { setRunning } from '../reducers/running'
+import { setAlgorithm } from '../reducers/algorithm'
 
 const MainWrapper = styled.div`
 	background-color: ${props => props.theme.bg_color};
@@ -16,14 +18,24 @@ const MainWrapper = styled.div`
 `
 
 class Main extends React.Component {
-	genArray = () => {
-		this.props.generateArray(50, window.innerHeight / 1.4)
+	setArray = () => {
+		const { running } = this.props
+		if (running == 0) {
+			this.props.setArray(100, window.innerHeight / 1.4)
+		} else {
+			alert('Already Running!')
+		}
 	}
 	sortTest = () => {
 		this.props.setAlgorithm('insertionSort')
 	}
 	startSort = () => {
-		this.props.startSorting(this.props.algorithm, this.props.array)
+		const { running } = this.props
+		if (running == 0) {
+			this.props.startSorting(this.props.algorithm, this.props.array)
+		} else {
+			alert('Already Running!')
+		}
 	}
 	render() {
 		let { array, currentTwo, currentOne, algorithm } = this.props
@@ -32,7 +44,7 @@ class Main extends React.Component {
 				<Navbar
 					startSort={this.startSort}
 					sortTest={this.sortTest}
-					genArray={this.genArray}
+					setArray={this.setArray}
 				/>
 				<div>
 					Debug Panel:
@@ -52,33 +64,37 @@ class Main extends React.Component {
 const mapStateToProps = state => {
 	return {
 		array: state.array,
-		algorithm: state.algorithm.algorithm,
+		algorithm: state.algorithm,
 		currentOne: state.currentOne,
-		currentTwo: state.currentTwo
+		currentTwo: state.currentTwo,
+		running: state.running
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		generateArray: (length, height) => {
+		setArray: (length, height) => {
 			let array = Array.from({ length: length }, () =>
 				Math.floor(Math.random() * height)
 			)
-			// let array = Array.from(Array(100).keys())
 			console.log('in main.js: ' + array)
-			dispatch(genArray(array))
+			dispatch(setArray(array))
 			dispatch(setCurrentOne(0))
 			dispatch(setCurrentTwo(0))
 		},
 		setAlgorithm: algorithm => {
-			dispatch({ type: 'SET_ALGORITHM', algorithm: algorithm })
+			dispatch(setAlgorithm(algorithm))
 		},
 		startSorting: (algorithm, array) => {
+			dispatch(setCurrentOne(0))
+			dispatch(setCurrentTwo(0))
 			var doSort
 			if (algorithm == 'insertionSort') {
 				doSort = insertionSort
 			}
+			dispatch(setRunning(1))
 			doSort(array, dispatch)
+			dispatch(setRunning(0))
 		}
 	}
 }

@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-const Square = styled.div`
-	${'' /* background: ${props => props.theme.node_color}; */}
-	
+const Square = styled.div`	
     background: ${props => props.current}
 	height: ${props => props.value}px
 	width: 8px;
@@ -13,17 +11,15 @@ const Square = styled.div`
 class ArrayNode extends React.Component {
 	color = () => {
 		if (this.props.idx == this.props.currentOne) {
-			return '#a5ff54'
+			return '#80d6ce'
 		} else if (this.props.idx == this.props.currentTwo) {
-			return '#ed6c66'
+			return '#ff6dff'
 		} else {
-			return '#ffcb00'
+			return '#a5ff54'
 		}
 	}
 	render() {
-		const { currentOne, value, idx, array } = this.props
-
-		console.log('in render()' + currentOne)
+		const { currentOne, value } = this.props
 
 		return <Square value={value} current={this.color()}></Square>
 	}
@@ -32,9 +28,7 @@ class ArrayNode extends React.Component {
 const mapStateToProps = state => {
 	return {
 		currentOne: state.currentOne,
-		currentTwo: state.currentTwo,
-
-		array: state.array
+		currentTwo: state.currentTwo
 	}
 }
 

@@ -1,25 +1,12 @@
 import { setArray } from '../reducers/array'
 import { setCurrentOne, setCurrentTwo } from '../reducers/insertion_sort'
-// import
+import { setRunning } from '../reducers/running'
 
 function insertionSort(arr, dispatch) {
 	let array = arr.slice(0)
-	// let toDispatch = []
 	// testHelper(array, dispatch)
 	insertionTest(arr, dispatch)
-}
-
-function insertionSortHelper(arr, dispatch) {
-	let n = arr.length
-	for (var i = 1; i < n; i++) {
-		var key = arr[i]
-		var j = i - 1
-		while (j >= 0 && arr[j] < key) {
-			arr[j + 1] = arr[i]
-			j = j - 1
-		}
-		arr[j + 1] = key
-	}
+	dispatch(setRunning(0))
 }
 
 function insertionTest(arr, dispatch) {
@@ -30,13 +17,14 @@ function insertionTest(arr, dispatch) {
 			var key = arr[i]
 			var j = i - 1
 			dispatch(setCurrentTwo(i))
-			while (j >= 0 && arr[j] < key) {
+			while (j >= 0 && arr[j] > key) {
 				dispatch(setCurrentOne(j))
 				arr[j + 1] = arr[i]
-				j = j - 1
+				j--
 			}
 			arr[j + 1] = key
-
+			// dispatch(setArray(arr))
+			console.log('ARRAY ____ :::' + arr)
 			i++
 			if (i < n) {
 				loop()

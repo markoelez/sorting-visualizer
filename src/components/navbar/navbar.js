@@ -23,7 +23,7 @@ export default class Navbar extends React.Component {
 		return (
 			<StyledNav>
 				<MenuWrapper>
-					<NavItem onClick={this.props.genArray} title={'Generate Array'} />
+					<NavItem onClick={this.props.setArray} title={'Generate Array'} />
 					<NavItem />
 					<NavItem onClick={this.props.sortTest} title={'Insertion Sort'} />
 					<NavItem title={'Quick Sort'} />
