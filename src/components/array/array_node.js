@@ -6,29 +6,35 @@ const Square = styled.div`
 	${'' /* background: ${props => props.theme.node_color}; */}
 	
     background: ${props => props.current}
-	height: ${props => props.height}px
+	height: ${props => props.value}px
 	width: 8px;
 `
 
 class ArrayNode extends React.Component {
 	color = () => {
-		if (this.props.value == this.props.current) {
+		if (this.props.idx == this.props.currentOne) {
 			return '#a5ff54'
-		} else {
+		} else if (this.props.idx == this.props.currentTwo) {
 			return '#ed6c66'
+		} else {
+			return '#ffcb00'
 		}
 	}
 	render() {
-		const height = this.props.value
-		const current = this.props.current
+		const { currentOne, value, idx, array } = this.props
 
-		return <Square height={height} current={this.color()}></Square>
+		console.log('in render()' + currentOne)
+
+		return <Square value={value} current={this.color()}></Square>
 	}
 }
 
 const mapStateToProps = state => {
 	return {
-		current: state.currentOne
+		currentOne: state.currentOne,
+		currentTwo: state.currentTwo,
+
+		array: state.array
 	}
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import ArrayNode from './array_node'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const RowWrapper = styled.table`
 	justify-content: center;
@@ -12,24 +13,31 @@ const CenteredColumn = styled.td`
 `
 
 class Row extends React.Component {
-	renderNode(value) {
+	renderNode(idx, value) {
 		return (
 			<CenteredColumn>
-				<ArrayNode value={value} />
+				<ArrayNode idx={idx} value={value} />
 			</CenteredColumn>
 		)
 	}
 	generateNodes(array) {
 		var elements = []
-		array.forEach(element => {
-			elements.push(this.renderNode(element))
+		array.forEach((value, index) => {
+			elements.push(this.renderNode(index, value))
 		})
 		return elements
 	}
 	render() {
-		const arrayElements = this.generateNodes(this.props.value)
+		const { array } = this.props
+		const arrayElements = this.generateNodes(array)
 		return <RowWrapper>{arrayElements}</RowWrapper>
 	}
 }
 
-export default Row
+const mapStateToProps = state => {
+	return {
+		array: state.array
+	}
+}
+
+export default connect(mapStateToProps)(Row)
