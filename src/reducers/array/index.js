@@ -1,8 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 
-const initState = {
-	data: []
-}
+const initState = []
 
 // const reducer = (state = initState, action) => {
 // 	return state
@@ -26,14 +24,9 @@ export const genArray = createAction(GEN_ARRAY)
 
 export const array = handleActions(
 	{
-		GEN_ARRAY: (state, action) => {
-			console.log('length: ' + action.max_height)
-			return {
-				...state,
-				data: Array.from({ length: action.length }, () =>
-					Math.floor(Math.random() * action.max_height)
-				)
-			}
+		GEN_ARRAY: (state, { payload }) => {
+			console.log('in reducer: ' + payload)
+			return payload
 		}
 	},
 	initState

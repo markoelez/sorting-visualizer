@@ -25,11 +25,7 @@ async function testHelper(arr, dispatch) {
 	let n = arr.length
 	for (var i = 1; i < n; i++) {
 		console.log(i)
-		dispatch(
-			setCurrentOne({
-				idx: i
-			})
-		)
+		dispatch(setCurrentOne(i))
 	}
 }
 

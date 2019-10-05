@@ -26,7 +26,7 @@ class Main extends React.Component {
 	}
 	render() {
 		const { array } = this.props
-
+		console.log('in render()' + array)
 		return (
 			<div>
 				<Navbar
@@ -47,17 +47,20 @@ class Main extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		array: state.array.data,
+		array: state.array,
 		algorithm: state.algorithm.algorithm,
-		current: state.currentOne.idx
+		current: state.currentOne
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		generateArray: (length, max_height) => {
-			// dispatch({ type: 'GEN_ARRAY', length: length, max_height: max_height })
-			dispatch(genArray(length, max_height))
+		generateArray: (length, height) => {
+			let array = Array.from({ length: length }, () =>
+				Math.floor(Math.random() * height)
+			)
+			console.log('in main.js: ' + array)
+			dispatch(genArray(array))
 		},
 		setAlgorithm: algorithm => {
 			dispatch({ type: 'SET_ALGORITHM', algorithm: algorithm })
