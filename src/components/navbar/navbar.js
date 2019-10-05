@@ -28,7 +28,7 @@ export default class Navbar extends React.Component {
 					<NavItem onClick={this.props.sortTest} title={'Insertion Sort'} />
 					<NavItem title={'Quick Sort'} />
 					<NavItem />
-					<NavItem title={'Start Sorting'} />
+					<NavItem onClick={this.props.startSort} title={'Start Sorting'} />
 				</MenuWrapper>
 			</StyledNav>
 		)

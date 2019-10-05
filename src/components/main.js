@@ -4,6 +4,8 @@ import Row from './array/array'
 import { connect } from 'react-redux'
 import Navbar from './navbar/navbar'
 import Button from '@material-ui/core/Button'
+import insertionSort from '../algorithms/insertionSort'
+import { genArray } from '../reducers/array'
 
 const MainWrapper = styled.div`
 	background-color: ${props => props.theme.bg_color};
@@ -17,13 +19,24 @@ class Main extends React.Component {
 		this.props.generateArray(100, window.innerHeight / 1.4)
 	}
 	sortTest = () => {
-		this.props.startSorting('INSERTION_SORT', this.props.array)
+		this.props.setAlgorithm('insertionSort')
+	}
+	startSort = () => {
+		this.props.startSorting(this.props.algorithm, this.props.array)
 	}
 	render() {
 		const { array } = this.props
+
 		return (
 			<div>
-				<Navbar sortTest={this.sortTest} genArray={this.genArray} />
+				<Navbar
+					startSort={this.startSort}
+					sortTest={this.sortTest}
+					genArray={this.genArray}
+				/>
+				<div>{'Current: ' + this.props.current}</div>
+				<div>{'Algorithm: ' + this.props.algorithm}</div>
+
 				<MainWrapper>
 					<Row value={array} />
 				</MainWrapper>
@@ -34,17 +47,27 @@ class Main extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		array: state.array.data
+		array: state.array.data,
+		algorithm: state.algorithm.algorithm,
+		current: state.currentOne.idx
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
 		generateArray: (length, max_height) => {
-			dispatch({ type: 'GEN_ARRAY', length: length, max_height: max_height })
+			// dispatch({ type: 'GEN_ARRAY', length: length, max_height: max_height })
+			dispatch(genArray(length, max_height))
 		},
-		startSorting: (method, data) => {
-			dispatch({ type: method, data: data })
+		setAlgorithm: algorithm => {
+			dispatch({ type: 'SET_ALGORITHM', algorithm: algorithm })
+		},
+		startSorting: (algorithm, array) => {
+			var doSort
+			if (algorithm == 'insertionSort') {
+				doSort = insertionSort
+			}
+			doSort(array, dispatch)
 		}
 	}
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const Square = styled.div`
 	background: ${props => props.theme.node_color};
@@ -10,8 +11,16 @@ const Square = styled.div`
 class ArrayNode extends React.Component {
 	render() {
 		const height = this.props.value
+		const current = this.props.current
+
 		return <Square height={height}></Square>
 	}
 }
 
-export default ArrayNode
+const mapStateToProps = state => {
+	return {
+		current: state.currentOne.idx
+	}
+}
+
+export default connect(mapStateToProps)(ArrayNode)
