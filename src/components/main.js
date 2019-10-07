@@ -49,12 +49,12 @@ class Main extends React.Component {
 					sortTest={this.sortTest}
 					setArray={this.setArray}
 				/>
-				<div>
+				{/* <div>
 					Debug Panel:
 					<div>{'CurrentOne: ' + currentOne}</div>
 					<div>{'CurrentTwo: ' + currentTwo}</div>
 					<div>{'Algorithm: ' + algorithm}</div>
-				</div>
+				</div> */}
 
 				<MainWrapper>
 					<Row />
