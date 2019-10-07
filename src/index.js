@@ -4,7 +4,7 @@ import './index.css'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
-import Main from './components/main'
+import Main from './components/main_container'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles/theme'
 
