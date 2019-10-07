@@ -13,23 +13,21 @@ const CenteredColumn = styled.td`
 `
 
 class Row extends React.Component {
-	renderNode(idx, value) {
-		return (
-			<CenteredColumn>
-				<ArrayNode idx={idx} value={value} />
-			</CenteredColumn>
-		)
-	}
 	generateNodes(array) {
 		var elements = []
 		array.forEach((value, index) => {
-			elements.push(this.renderNode(index, value))
+			elements.push(
+				<CenteredColumn>
+					<ArrayNode idx={index} value={value} />
+				</CenteredColumn>
+			)
 		})
 		return elements
 	}
 	render() {
-		const { array } = this.props
-		const arrayElements = this.generateNodes(array)
+		let { array } = this.props
+		console.log('UPDATED ARRAY: ' + array)
+		var arrayElements = this.generateNodes(array)
 		return <RowWrapper>{arrayElements}</RowWrapper>
 	}
 }

@@ -21,7 +21,7 @@ class Main extends React.Component {
 	setArray = () => {
 		const { running } = this.props
 		if (running == 0) {
-			this.props.setArray(100, window.innerHeight / 1.4)
+			this.props.setArray(50, window.innerHeight / 1.4)
 		} else {
 			alert('Already Running!')
 		}
@@ -30,15 +30,18 @@ class Main extends React.Component {
 		this.props.setAlgorithm('insertionSort')
 	}
 	startSort = () => {
-		const { running } = this.props
-		if (running == 0) {
-			this.props.startSorting(this.props.algorithm, this.props.array)
-		} else {
-			alert('Already Running!')
-		}
+		// const { running } = this.props
+		// if (running == 0) {
+		// 	this.props.startSorting(this.props.algorithm, this.props.array)
+		// } else {
+		// 	alert('Already Running!')
+		// }
+		this.props.startSorting(this.props.algorithm, this.props.array)
 	}
 	render() {
 		let { array, currentTwo, currentOne, algorithm } = this.props
+		console.log('RENDER CALLED' + array)
+
 		return (
 			<div>
 				<Navbar
@@ -79,22 +82,22 @@ const mapDispatchToProps = dispatch => {
 			)
 			console.log('in main.js: ' + array)
 			dispatch(setArray(array))
-			dispatch(setCurrentOne(0))
-			dispatch(setCurrentTwo(0))
+			// dispatch(setCurrentOne(0))
+			// dispatch(setCurrentTwo(0))
 		},
 		setAlgorithm: algorithm => {
 			dispatch(setAlgorithm(algorithm))
 		},
 		startSorting: (algorithm, array) => {
-			dispatch(setCurrentOne(0))
-			dispatch(setCurrentTwo(0))
+			// dispatch(setCurrentOne(0))
+			// dispatch(setCurrentTwo(0))
 			var doSort
 			if (algorithm == 'insertionSort') {
 				doSort = insertionSort
 			}
-			dispatch(setRunning(1))
+			// dispatch(setRunning(1))
 			doSort(array, dispatch)
-			dispatch(setRunning(0))
+			// dispatch(setRunning(0))
 		}
 	}
 }
