@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './styles/theme'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import Main from './components/main_container'
-import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/theme'
+import './index.css'
 
 const store = createStore(rootReducer)
 

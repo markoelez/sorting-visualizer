@@ -8,7 +8,7 @@ const Square = styled.div`
 	width: 8px;
 `
 
-class ArrayNode extends React.Component {
+class Node extends React.Component {
 	color = () => {
 		if (this.props.idx == this.props.currentOne) {
 			return '#80d6ce'
@@ -32,4 +32,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(ArrayNode)
+export default connect(mapStateToProps)(Node)

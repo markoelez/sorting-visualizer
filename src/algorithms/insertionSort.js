@@ -2,11 +2,10 @@ import { updateArray } from '../reducers/array'
 import { setCurrentOne, setCurrentTwo } from '../reducers/insertion_sort'
 import { setRunning } from '../reducers/running'
 
-function insertionSort(arr, dispatch) {
+export default function insertionSort(arr, dispatch) {
 	let array = arr.slice(0)
-	// testHelper(array, dispatch)
 	delayedInsertion(array, dispatch)
-	dispatch(setRunning(0))
+	// dispatch(setRunning(0))
 }
 
 function delayedInsertion(array, dispatch) {
@@ -23,7 +22,7 @@ function delayedInsertion(array, dispatch) {
 				// dispatch(setCurrentTwo(j))
 			}
 			array[j + 1] = temp
-			// console.log('ARRAY: ' + array)
+			console.log('updating array - stage 1: ' + array)
 			dispatch(updateArray(array))
 			i++
 			if (i < n) {
@@ -48,5 +47,3 @@ function normalInsertion(array, dispatch) {
 		console.log('ARRAY: ' + array)
 	}
 }
-
-export default insertionSort

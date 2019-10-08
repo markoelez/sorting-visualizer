@@ -1,5 +1,5 @@
 import React from 'react'
-import ArrayNode from './array_node'
+import Node from './node'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -18,15 +18,15 @@ class Row extends React.Component {
 		array.forEach((value, index) => {
 			elements.push(
 				<CenteredColumn>
-					<ArrayNode idx={index} value={value} />
+					<Node idx={index} value={value} />
 				</CenteredColumn>
 			)
 		})
 		return elements
 	}
 	render() {
-		let { array } = this.props
-		console.log('UPDATED ARRAY: ' + array)
+		const { array } = this.props
+		console.log('updating array - stage 3: ' + array)
 		var arrayElements = this.generateNodes(array)
 		return <RowWrapper>{arrayElements}</RowWrapper>
 	}

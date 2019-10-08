@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Row from './array/array'
-import Navbar from './navbar/navbar'
+import Row from './array/row'
+import Navbar from './navbar/navbar_container'
 
 const MainWrapper = styled.div`
 	background-color: ${props => props.theme.bg_color};
@@ -12,19 +12,9 @@ const MainWrapper = styled.div`
 
 class Main extends React.Component {
 	render() {
-		const { initArray, startSorting, algorithm, array } = this.props
-		console.log('SET ARRAY: ' + typeof initArray)
-
 		return (
 			<div>
-				<Navbar
-					startSort={() => {
-						startSorting(algorithm, array)
-					}}
-					setArray={() => {
-						initArray(50, window.innerHeight / 1.4)
-					}}
-				/>
+				<Navbar />
 				<MainWrapper>
 					<Row />
 				</MainWrapper>

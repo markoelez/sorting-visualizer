@@ -18,19 +18,43 @@ const MenuWrapper = styled.ul`
 	width: 100%;
 `
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
 	render() {
+		const {
+			array,
+			algorithm,
+			initArray,
+			setAlgorithm,
+			startSorting
+		} = this.props
 		return (
 			<StyledNav>
 				<MenuWrapper>
-					<NavItem onClick={this.props.setArray} title={'Generate Array'} />
+					<NavItem
+						onClick={() => {
+							return initArray(20, window.innerHeight / 1.4)
+						}}
+						title={'Generate Array'}
+					/>
 					<NavItem />
-					<NavItem onClick={this.props.sortTest} title={'Insertion Sort'} />
+					<NavItem
+						onClick={() => {
+							return setAlgorithm(algorithm)
+						}}
+						title={'Insertion Sort'}
+					/>
 					<NavItem title={'Quick Sort'} />
 					<NavItem />
-					<NavItem onClick={this.props.startSort} title={'Start Sorting'} />
+					<NavItem
+						onClick={() => {
+							return startSorting(algorithm, array)
+						}}
+						title={'Start Sorting'}
+					/>
 				</MenuWrapper>
 			</StyledNav>
 		)
 	}
 }
+
+export default Navbar

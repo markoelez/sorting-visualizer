@@ -15,7 +15,7 @@ export const array = handleActions(
 			return payload
 		},
 		UPDATE_ARRAY: (state, { payload }) => {
-			console.log('............ : ' + payload)
+			console.log('updating array - stage 2: ' + payload)
 			return payload
 		}
 	},
