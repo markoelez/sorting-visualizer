@@ -1,16 +1,7 @@
 import React from 'react'
 import Node from './node'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
-
-const RowWrapper = styled.table`
-	justify-content: center;
-	margin: auto;
-`
-
-const CenteredColumn = styled.td`
-	vertical-align: middle;
-`
+import { RowWrapper, CenteredColumn } from './style'
 
 class Row extends React.Component {
 	generateNodes(array) {

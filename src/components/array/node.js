@@ -1,12 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
-
-const Square = styled.div`	
-    background: ${props => props.current}
-	height: ${props => props.value}px
-	width: 8px;
-`
+import { Square } from './style'
 
 class Node extends React.Component {
 	color = () => {
@@ -15,7 +9,7 @@ class Node extends React.Component {
 		} else if (this.props.idx == this.props.currentTwo) {
 			return '#ff6dff'
 		} else {
-			return '#a5ff54'
+			return '#aca9d2'
 		}
 	}
 	render() {

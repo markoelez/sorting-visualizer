@@ -5,7 +5,7 @@ import { theme } from './styles/theme'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
-import Main from './components/main_container'
+import Main from './components/main/main_container'
 import './index.css'
 
 const store = createStore(rootReducer)
